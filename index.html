@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Nezer Network</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="logo-wrap">
+        <div class="logo-ring"></div>
+        <!-- logo.jpg = your round profile/brand image at the top -->
+        <img src="logo.jpg" class="logo" alt="Nezer Logo"
+             onerror="this.style.display='none'; document.querySelector('.logo-placeholder').style.display='flex'">
+        <div class="logo-placeholder">N</div>
+      </div>
+      <div class="site-title">NEZER NETWORK</div>
+      <div class="wallet-status" id="walletStatus">NOT CONNECTED</div>
+      <button class="btn-connect" id="connectBtn" onclick="connectWallet()">
+        CONNECT WALLET
+      </button>
+    </div>
+
+    <!-- GLOBAL STATS -->
+    <!-- apy.jpg = image inside the APY card -->
+    <!-- total.jpg = image inside the Total Staked card -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <img src="apy.jpg" class="card-img" alt="APY">
+        <div class="stat-label">Annual Yield</div>
+        <div class="stat-value apy">20%</div>
+      </div>
+      <div class="stat-card">
+        <img src="total.jpg" class="card-img" alt="Total Staked">
+        <div class="stat-label">Total Staked</div>
+        <div class="stat-value" id="totalStaked">—</div>
+      </div>
+    </div>
+
+    <!-- STAKE / UNSTAKE PREVIEW CARDS -->
+    <!-- stake.jpg = image inside the Stake card -->
+    <!-- unstake.jpg = image inside the Unstake card -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <img src="stake.jpg" class="card-img" alt="Stake">
+        <div class="stat-label">Stake</div>
+      </div>
+      <div class="stat-card">
+        <img src="unstake.jpg" class="card-img" alt="Unstake">
+        <div class="stat-label">Unstake</div>
+      </div>
+    </div>
+
+    <!-- USER STATS (hidden until connected) -->
+    <div class="user-stats" id="userStats">
+      <div class="user-stat">
+        <div class="user-stat-label">Your Stake</div>
+        <div class="user-stat-value" id="userStaked">0</div>
+      </div>
+      <div class="user-stat">
+        <div class="user-stat-label">Pending</div>
+        <div class="user-stat-value reward" id="pendingReward">0</div>
+      </div>
+      <div class="user-stat">
+        <div class="user-stat-label">Network</div>
+        <div class="user-stat-value" id="networkName">—</div>
+      </div>
+    </div>
+
+    <!-- STAKING PANEL -->
+    <div class="staking-panel">
+      <div class="panel-label">STAKING ACTIONS</div>
+      <div class="input-wrap">
+        <input id="amount" type="number" min="0" step="any" placeholder="0.00">
+        <span class="input-suffix">NZR</span>
+      </div>
+      <div class="action-btns">
+        <button class="btn-action primary" onclick="stake()">▲ STAKE</button>
+        <button class="btn-action" onclick="unstake()">▼ UNSTAKE</button>
+      </div>
+    </div>
+
+    <!-- CLAIM PANEL -->
+    <div class="claim-panel">
+      <div class="claim-left">
+        <div class="claim-title">CLAIMABLE REWARDS</div>
+        <div class="claim-amount" id="claimAmount">0.00 NZR</div>
+      </div>
+      <button class="btn-claim" onclick="claimRewards()">CLAIM →</button>
+    </div>
+
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
